@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="«Датка» сулуулук салону — чач тарач, маникюр, педикюр, макияж, косметология. Онлайн жазылуу." />
+  <title>Датка — Сулуулук салону</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ░░░ HEADER ░░░ -->
+  <header class="site-header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="logo">
+        <span class="logo__mark">Д</span>
+        <span class="logo__text">Датка<small>сулуулук салону</small></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#services" class="nav__link">Кызматтар</a>
+        <a href="#masters" class="nav__link">Шеберлер</a>
+        <a href="#gallery" class="nav__link">Галерея</a>
+        <a href="#reviews" class="nav__link">Пикирлер</a>
+        <a href="#contacts" class="nav__link">Байланыш</a>
+      </nav>
+      <a href="#booking" class="btn btn--gold header__cta">Онлайн жазылуу</a>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ░░░ HERO ░░░ -->
+  <section class="hero" id="hero">
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">2018-жылдан бери Ош шаарында</p>
+      <h1 class="hero__title">Сулуулук — бул<br><em>өзүңө болгон сүйүү</em></h1>
+      <p class="hero__subtitle">
+        «Датка» салонунда тажрыйбалуу шеберлер, заманбап жабдуулар жана
+        жагымдуу атмосфера сизди күтүүдө. Өзүңүздү жаңы кырынан ачыңыз.
+      </p>
+      <div class="hero__actions">
+        <a href="#booking" class="btn btn--gold">Жазылуу калтыруу</a>
+        <a href="#services" class="btn btn--ghost">Кызматтарды көрүү</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat"><b>7+</b><span>жылдык тажрыйба</span></div>
+        <div class="stat"><b>12</b><span>кесипкөй шебер</span></div>
+        <div class="stat"><b>9000+</b><span>ыраазы кардар</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ FEATURES ░░░ -->
+  <section class="features">
+    <div class="container features__grid">
+      <article class="feature">
+        <div class="feature__icon">✦</div>
+        <h3>Кесипкөй шеберлер</h3>
+        <p>Ар бир шебер сертификаттан өткөн жана дайыма квалификациясын жогорулатат.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon">❀</div>
+        <h3>Заманбап каражаттар</h3>
+        <p>Дүйнөлүк брендтердин гипоаллергендик жана коопсуз продукциясы менен иштейбиз.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon">☼</div>
+        <h3>Тазалык жана коопсуздук</h3>
+        <p>Бардык аспаптар стерилизациядан өтөт, санитардык нормалар толук сакталат.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon">✿</div>
+        <h3>Онлайн жазылуу</h3>
+        <p>Кезекте турбай, ыңгайлуу убакытты сайттан эле тандап жазыла аласыз.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ░░░ SERVICES ░░░ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Биздин кызматтар</p>
+        <h2 class="section__title">Сиз үчүн кооздук кызматтары</h2>
+        <p class="section__lead">Баа жана узактык болжолдуу көрсөтүлгөн. Так маалымат жазылуудан кийин такталат.</p>
+      </div>
+      <div class="services" id="servicesGrid">
+        <!-- JS аркылуу толтурулат -->
+        <div class="services__loading">Кызматтар жүктөлүүдө…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ MASTERS ░░░ -->
+  <section class="section section--alt" id="masters">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Биздин команда</p>
+        <h2 class="section__title">Кесипкөй шеберлер</h2>
+        <p class="section__lead">Өз ишин сүйгөн, тажрыйбалуу адистер сиздин кооздугуңуз үчүн.</p>
+      </div>
+      <div class="masters" id="mastersGrid">
+        <div class="services__loading">Шеберлер жүктөлүүдө…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ GALLERY ░░░ -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Галерея</p>
+        <h2 class="section__title">Биздин жумуштар</h2>
+      </div>
+      <div class="gallery">
+        <figure class="gallery__item g1"><figcaption>Чач жасалгасы</figcaption></figure>
+        <figure class="gallery__item g2"><figcaption>Маникюр</figcaption></figure>
+        <figure class="gallery__item g3"><figcaption>Макияж</figcaption></figure>
+        <figure class="gallery__item g4"><figcaption>Косметология</figcaption></figure>
+        <figure class="gallery__item g5"><figcaption>Кашлар жана керпиктер</figcaption></figure>
+        <figure class="gallery__item g6"><figcaption>Салон ичи</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ REVIEWS ░░░ -->
+  <section class="section section--alt" id="reviews">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Пикирлер</p>
+        <h2 class="section__title">Кардарлар эмне дейт</h2>
+      </div>
+      <div class="reviews" id="reviewsGrid">
+        <div class="services__loading">Пикирлер жүктөлүүдө…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ BOOKING ░░░ -->
+  <section class="section booking" id="booking">
+    <div class="container booking__inner">
+      <div class="booking__info">
+        <p class="section__eyebrow">Онлайн жазылуу</p>
+        <h2 class="section__title">Ыңгайлуу убакытка жазылыңыз</h2>
+        <p class="section__lead">
+          Форманы толтуруңуз — администратор сиз менен байланышып, жазылууну
+          ырастайт. Жазылуу акысыз жана эч кандай милдеттенме жүктөбөйт.
+        </p>
+        <ul class="booking__perks">
+          <li>✔ Тез ырастоо — 15 мүнөттүн ичинде</li>
+          <li>✔ Ыңгайлуу убакытты өзүңүз тандайсыз</li>
+          <li>✔ Эскертүү SMS аркылуу келет</li>
+        </ul>
+      </div>
+
+      <form class="booking__form" id="bookingForm" novalidate>
+        <div class="field">
+          <label for="bf-name">Атыңыз *</label>
+          <input id="bf-name" name="name" type="text" placeholder="Аты-жөнүңүз" required />
+        </div>
+        <div class="field">
+          <label for="bf-phone">Телефон *</label>
+          <input id="bf-phone" name="phone" type="tel" placeholder="+996 (___) __-__-__" required />
+        </div>
+        <div class="field">
+          <label for="bf-service">Кызмат *</label>
+          <select id="bf-service" name="service" required>
+            <option value="">— тандаңыз —</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bf-master">Шебер</label>
+          <select id="bf-master" name="master">
+            <option value="">Каалаган шебер</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bf-date">Күнү *</label>
+          <input id="bf-date" name="date" type="date" required />
+        </div>
+        <div class="field">
+          <label for="bf-time">Убакыт *</label>
+          <input id="bf-time" name="time" type="time" required />
+        </div>
+        <div class="field field--full">
+          <label for="bf-note">Кошумча эскертүү</label>
+          <textarea id="bf-note" name="note" rows="2" placeholder="Каалооңуз болсо жазыңыз"></textarea>
+        </div>
+        <button type="submit" class="btn btn--gold btn--block" id="bookingSubmit">Жазылууну жөнөтүү</button>
+        <p class="booking__status" id="bookingStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ░░░ CONTACTS ░░░ -->
+  <section class="section" id="contacts">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Байланыш</p>
+        <h2 class="section__title">Бизди табыңыз</h2>
+      </div>
+      <div class="contacts">
+        <div class="contacts__card">
+          <h3>Дарек</h3>
+          <p>Кыргызстан, Ош шаары,<br>Курманжан Датка көчөсү, 123</p>
+        </div>
+        <div class="contacts__card">
+          <h3>Телефон</h3>
+          <p><a href="tel:+996700123456">+996 700 123 456</a><br><a href="tel:+996555123456">+996 555 123 456</a></p>
+        </div>
+        <div class="contacts__card">
+          <h3>Иш убактысы</h3>
+          <p>Дүйшөмбү – Ишемби: 09:00 – 20:00<br>Жекшемби: 10:00 – 18:00</p>
+        </div>
+        <div class="contacts__card">
+          <h3>Социалдык тармактар</h3>
+          <p class="contacts__social">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="WhatsApp">WhatsApp</a>
+            <a href="#" aria-label="Telegram">Telegram</a>
+          </p>
+        </div>
+      </div>
+      <div class="map">
+        <iframe
+          title="Карта"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=72.78%2C40.51%2C72.82%2C40.54&layer=mapnik"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ FOOTER ░░░ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__mark">Д</span>
+        <div>
+          <strong>Датка</strong>
+          <p>Сулуулук салону · Ош шаары</p>
+        </div>
+      </div>
+      <nav class="footer__nav">
+        <a href="#services">Кызматтар</a>
+        <a href="#masters">Шеберлер</a>
+        <a href="#booking">Жазылуу</a>
+        <a href="#contacts">Байланыш</a>
+      </nav>
+      <p class="footer__copy">© 2026 «Датка» сулуулук салону. Бардык укуктар корголгон.<br>
+        <small>Дипломдук иштин алкагында иштелип чыккан демонстрациялык долбоор.</small></p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

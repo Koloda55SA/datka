@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Айпери", "role": "Топ-стилист", "exp": "8 жыл тажрыйба", "color": "linear-gradient(135deg,#6d2a4d,#2a1726)" },
+  { "id": 2, "name": "Нургуль", "role": "Колорист", "exp": "6 жыл тажрыйба", "color": "linear-gradient(135deg,#c9a35b,#6d2a4d)" },
+  { "id": 3, "name": "Аземгүл", "role": "Маникюр устасы", "exp": "5 жыл тажрыйба", "color": "linear-gradient(135deg,#b07a52,#6d2a4d)" },
+  { "id": 4, "name": "Бегимай", "role": "Визажист", "exp": "7 жыл тажрыйба", "color": "linear-gradient(135deg,#3d2238,#b07a52)" }
+]
