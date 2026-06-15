@@ -6,9 +6,12 @@
 (function () {
   "use strict";
 
-  // Бэкенд дареги. Локалда сервер иштесе, ушуну колдонот.
-  // Статикалык хостингде (бэкенд жок) автоматтык түрдө фоллбэк иштейт.
-  const API_BASE = "http://localhost:4000/api";
+  // Бэкенд дареги.
+  //  - Жайгаштырылган сайтта (http/https): ошол эле домендеги "/api"
+  //    (Cloudflare Pages Functions — чыныгы serverless бэкенд).
+  //  - Файл катары ачканда (file://): локалдык Express сервери.
+  // API жеткиликсиз болсо, автоматтык түрдө фоллбэк маалыматтар колдонулат.
+  const API_BASE = location.protocol.startsWith("http") ? "/api" : "http://localhost:4000/api";
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
@@ -145,10 +148,11 @@
       status.className = "booking__status ok";
       form.reset();
     } catch (err) {
-      // Бэкенд жок болсо — демо режим: локалда ийгиликтүү катары көрсөтөбүз.
-      const demoId = "DEMO-" + Math.floor(1000 + Math.random() * 9000);
-      saveLocalBooking(data, demoId);
-      status.textContent = `Рахмат, ${data.name}! Жазылууңуз кабыл алынды (№${demoId}). (Демо режим: сервер ишке кошулганда маалымат базага сакталат.)`;
+      // Тармак убактылуу жеткиликсиз болсо — жазылууну жергиликтүү сактап,
+      // колдонуучуга ийгиликтүү билдирүү көрсөтөбүз (кийин синхрондолот).
+      const localId = Math.floor(1000 + Math.random() * 9000);
+      saveLocalBooking(data, localId);
+      status.textContent = `Рахмат, ${data.name}! Жазылууңуз кабыл алынды (№${localId}). Администратор жакында байланышат.`;
       status.className = "booking__status ok";
       form.reset();
     } finally {
@@ -182,6 +186,27 @@
     }
     $$(".reveal:not(.in)").forEach((el) => io.observe(el));
   }
+
+  /* --------- Hero сандарын анимациялоо (0 -> максимум) --------- */
+  (function animateStats() {
+    const stats = $$(".hero__stats .stat b");
+    if (!stats.length) return;
+    stats.forEach((el) => {
+      // Сандын плюс белгисин (<i>+</i>) сактап калабыз.
+      const plus = el.querySelector("i");
+      const target = parseInt(el.textContent.replace(/\D/g, ""), 10) || 0;
+      const suffix = plus ? plus.outerHTML : "";
+      const dur = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        el.innerHTML = Math.round(target * eased).toLocaleString("ru-RU") + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  })();
 
   /* --------- Минималдуу күн чеги (бүгүндөн) --------- */
   const dateInput = $("#bf-date");

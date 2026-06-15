@@ -1,0 +1,32 @@
+<svg width="200" height="56" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Датка">
+  <defs>
+    <linearGradient id="dGold" x1="6" y1="6" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e9d29a"/>
+      <stop offset=".5" stop-color="#c9a35b"/>
+      <stop offset="1" stop-color="#a9813f"/>
+    </linearGradient>
+    <linearGradient id="dShine" x1="0" y1="0" x2="0" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Знак: круглая печать с монограммой Д -->
+  <g>
+    <circle cx="28" cy="28" r="25" fill="url(#dGold)"/>
+    <circle cx="28" cy="28" r="25" fill="url(#dShine)"/>
+    <circle cx="28" cy="28" r="21.5" fill="none" stroke="#2a1726" stroke-opacity=".35" stroke-width="1.2"/>
+    <!-- Буква Д в шрифте с засечками -->
+    <text x="28" y="29" text-anchor="middle" dominant-baseline="central"
+          font-family="'Playfair Display', Georgia, serif" font-weight="700" font-size="30"
+          fill="#2a1726">Д</text>
+    <!-- декоративные точки по бокам -->
+    <circle cx="28" cy="6.5" r="1.6" fill="#fff" fill-opacity=".8"/>
+  </g>
+
+  <!-- Текст: Датка + подпись -->
+  <text x="64" y="25" font-family="'Playfair Display', Georgia, serif" font-weight="600"
+        font-size="23" fill="#2a1726" letter-spacing=".5">Датка</text>
+  <text x="65" y="42" font-family="'Montserrat', Arial, sans-serif" font-weight="600"
+        font-size="8.5" letter-spacing="4" fill="#a9813f">СУЛУУЛУК САЛОНУ</text>
+</svg>

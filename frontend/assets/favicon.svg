@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fG" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e9d29a"/>
+      <stop offset=".55" stop-color="#c9a35b"/>
+      <stop offset="1" stop-color="#a9813f"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="#2a1726"/>
+  <circle cx="16" cy="16" r="12.5" fill="url(#fG)"/>
+  <text x="16" y="17" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia, 'Playfair Display', serif" font-weight="700" font-size="17"
+        fill="#2a1726">Д</text>
+</svg>

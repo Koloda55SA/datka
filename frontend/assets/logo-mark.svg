@@ -1,0 +1,20 @@
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Датка">
+  <defs>
+    <linearGradient id="mGold" x1="6" y1="6" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e9d29a"/>
+      <stop offset=".5" stop-color="#c9a35b"/>
+      <stop offset="1" stop-color="#a9813f"/>
+    </linearGradient>
+    <linearGradient id="mShine" x1="0" y1="0" x2="0" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="28" cy="28" r="25" fill="url(#mGold)"/>
+  <circle cx="28" cy="28" r="25" fill="url(#mShine)"/>
+  <circle cx="28" cy="28" r="21.5" fill="none" stroke="#2a1726" stroke-opacity=".35" stroke-width="1.2"/>
+  <circle cx="28" cy="6.5" r="1.6" fill="#fff" fill-opacity=".85"/>
+  <text x="28" y="29.5" text-anchor="middle" dominant-baseline="central"
+        font-family="'Playfair Display', Georgia, serif" font-weight="700" font-size="30"
+        fill="#2a1726">Д</text>
+</svg>
