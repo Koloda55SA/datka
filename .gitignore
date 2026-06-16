@@ -1,5 +1,8 @@
 # Node
 node_modules/
+
+# Cloudflare / Wrangler local cache
+.wrangler/
 npm-debug.log*
 yarn-error.log*
 .env

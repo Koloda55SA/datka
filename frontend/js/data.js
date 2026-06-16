@@ -17,10 +17,18 @@ window.DATKA_FALLBACK = {
     { id: 9, emoji: "💆", title: "SPA жана массаж", desc: "Эс алуу жана баш массажы.", price: "от 900 сом", duration: "30–60 мүн" }
   ],
   masters: [
-    { id: 1, name: "Айпери", role: "Топ-стилист", exp: "8 жыл тажрыйба", color: "linear-gradient(135deg,#6d2a4d,#2a1726)" },
-    { id: 2, name: "Нургуль", role: "Колорист", exp: "6 жыл тажрыйба", color: "linear-gradient(135deg,#c9a35b,#6d2a4d)" },
-    { id: 3, name: "Аземгүл", role: "Маникюр устасы", exp: "5 жыл тажрыйба", color: "linear-gradient(135deg,#b07a52,#6d2a4d)" },
-    { id: 4, name: "Бегимай", role: "Визажист", exp: "7 жыл тажрыйба", color: "linear-gradient(135deg,#3d2238,#b07a52)" }
+    { id: 1, name: "Айпери", role: "Топ-стилист", exp: "8 жыл тажрыйба", photo: "assets/photos/m1.jpg", color: "linear-gradient(135deg,#6d2a4d,#2a1726)" },
+    { id: 2, name: "Нургуль", role: "Колорист", exp: "6 жыл тажрыйба", photo: "assets/photos/m2.jpg", color: "linear-gradient(135deg,#c9a35b,#6d2a4d)" },
+    { id: 3, name: "Аземгүл", role: "Маникюр устасы", exp: "5 жыл тажрыйба", photo: "assets/photos/m3.jpg", color: "linear-gradient(135deg,#b07a52,#6d2a4d)" },
+    { id: 4, name: "Бегимай", role: "Визажист", exp: "7 жыл тажрыйба", photo: "assets/photos/m4.jpg", color: "linear-gradient(135deg,#3d2238,#b07a52)" }
+  ],
+  gallery: [
+    { id: 1, caption: "Чач жасалгасы", src: "assets/photos/g-hair.jpg", color: "linear-gradient(135deg,#6d2a4d,#2a1726)" },
+    { id: 2, caption: "Маникюр", src: "assets/photos/g-manicure.jpg", color: "linear-gradient(135deg,#b07a52,#6d2a4d)" },
+    { id: 3, caption: "Макияж", src: "assets/photos/g-makeup.jpg", color: "linear-gradient(135deg,#c9a35b,#6d2a4d)" },
+    { id: 4, caption: "Косметология", src: "assets/photos/g-cosmetology.jpg", color: "linear-gradient(135deg,#3d2238,#b07a52)" },
+    { id: 5, caption: "Кашлар жана керпиктер", src: "assets/photos/g-brows.jpg", color: "linear-gradient(135deg,#6d2a4d,#c9a35b)" },
+    { id: 6, caption: "Салон ичи", src: "assets/photos/g-interior.jpg", color: "linear-gradient(135deg,#2a1726,#b07a52)" }
   ],
   reviews: [
     { id: 1, text: "Эң мыкты салон! Шеберлер абдан кесипкөй, атмосфера жагымдуу. Дайыма ушул жерге келем.", author: "Гүлзат А.", meta: "Чач боёо", stars: 5 },

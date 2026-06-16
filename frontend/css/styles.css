@@ -76,7 +76,9 @@ em { font-style: italic; color: var(--gold); }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; min-height: 100vh; display: flex; align-items: center;
-  background: radial-gradient(circle at 75% 25%, var(--wine), var(--plum) 55%);
+  background:
+    linear-gradient(120deg, rgba(42,23,38,.92) 0%, rgba(109,42,77,.78) 45%, rgba(42,23,38,.55) 100%),
+    url('../assets/photos/hero.jpg') center/cover no-repeat;
   color: var(--white); overflow: hidden; padding: 8rem 0 4rem;
 }
 .hero::before {

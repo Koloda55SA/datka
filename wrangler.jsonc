@@ -1,0 +1,12 @@
+{
+  // «Датка» — Cloudflare Pages долбоору (фронтенд + serverless API)
+  "name": "datka",
+  "compatibility_date": "2024-09-01",
+  "pages_build_output_dir": "./frontend",
+  "kv_namespaces": [
+    {
+      "binding": "DATKA_BOOKINGS",
+      "id": "212bc67c683b4a85bb298bd8db928915"
+    }
+  ]
+}

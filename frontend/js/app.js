@@ -72,7 +72,9 @@
       .map(
         (m) => `
       <article class="master-card reveal">
-        <div class="master-card__photo" style="background:${m.color || "var(--wine)"}">${(m.name || "?")[0]}</div>
+        <div class="master-card__photo" style="background:${m.color || "var(--wine)"}">${
+          m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy">` : (m.name || "?")[0]
+        }</div>
         <div class="master-card__body">
           <h3 class="master-card__name">${m.name}</h3>
           <p class="master-card__role">${m.role || ""}</p>
@@ -100,6 +102,68 @@
       )
       .join("");
     observeReveal();
+  }
+
+  /* --------- Галерея --------- */
+  function renderGallery(items) {
+    const grid = $("#galleryGrid");
+    if (!grid) return;
+    if (!items || !items.length) { grid.innerHTML = ""; return; }
+    grid.innerHTML = items
+      .map((g, i) => {
+        const big = i === 2 ? " gallery__item--big" : ""; // 3-чү сүрөт чоңураак
+        const bg = g.src
+          ? `background-image:url('${g.src}')`
+          : `background-image:${g.color || "linear-gradient(135deg,#6d2a4d,#2a1726)"}`;
+        return `<figure class="gallery__item${big} reveal" style="${bg}">
+          <figcaption>${g.caption || ""}</figcaption>
+        </figure>`;
+      })
+      .join("");
+    observeReveal();
+  }
+
+  /* --------- Сайт жөндөөлөрү (settings) --------- */
+  function applySettings(s) {
+    if (!s) return;
+    const setText = (id, val) => { const el = $("#" + id); if (el && val != null) el.textContent = val; };
+    const setHTML = (id, val) => { const el = $("#" + id); if (el && val != null) el.innerHTML = val; };
+
+    setText("heroEyebrow", s.heroEyebrow);
+    if (s.heroTitle) setHTML("heroTitle", s.heroTitle.replace(/\n/g, "<br>"));
+    setText("heroSubtitle", s.heroSubtitle);
+
+    // Hero сандары (плюс белгисин <i> кылып бөлүп коёбуз)
+    const fmtStat = (v) => String(v || "").replace(/\+/g, "<i>+</i>");
+    [1, 2, 3].forEach((n) => {
+      const b = $(`[data-stat="${n}"]`);
+      const lab = $(`[data-statlabel="${n}"]`);
+      if (b && s[`stat${n}Value`]) { b.innerHTML = fmtStat(s[`stat${n}Value`]); b.dataset.target = s[`stat${n}Value`]; }
+      if (lab && s[`stat${n}Label`]) lab.textContent = s[`stat${n}Label`];
+    });
+
+    // Контакттар
+    if (s.address) setHTML("cAddress", s.address.replace(/\n/g, "<br>"));
+    const phones = [s.phone1, s.phone2].filter(Boolean)
+      .map((p) => `<a href="tel:${p.replace(/[^+\d]/g, "")}">${p}</a>`).join("<br>");
+    if (phones) setHTML("cPhones", phones);
+    if (s.hours) setHTML("cHours", s.hours.replace(/;\s*/g, "<br>"));
+
+    const soc = $("#cSocial");
+    if (soc) {
+      const links = [];
+      if (s.instagram && s.instagram !== "#") links.push(`<a href="${s.instagram}" target="_blank" rel="noopener">Instagram</a>`);
+      if (s.whatsapp && s.whatsapp !== "#") links.push(`<a href="${s.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>`);
+      if (s.telegram && s.telegram !== "#") links.push(`<a href="${s.telegram}" target="_blank" rel="noopener">Telegram</a>`);
+      if (links.length) soc.innerHTML = links.join("");
+    }
+
+    // Аталышы (лого тексти + футер)
+    if (s.salonName) {
+      const lt = $(".logo__text"); if (lt) lt.childNodes[0].nodeValue = s.salonName;
+      const fb = $(".footer__brand strong"); if (fb) fb.textContent = s.salonName;
+      document.title = `${s.salonName} — Сулуулук салону`;
+    }
   }
 
   /* --------- Формадагы select'тер --------- */
@@ -188,7 +252,7 @@
   }
 
   /* --------- Hero сандарын анимациялоо (0 -> максимум) --------- */
-  (function animateStats() {
+  function animateStats() {
     const stats = $$(".hero__stats .stat b");
     if (!stats.length) return;
     stats.forEach((el) => {
@@ -206,7 +270,7 @@
       }
       requestAnimationFrame(tick);
     });
-  })();
+  }
 
   /* --------- Минималдуу күн чеги (бүгүндөн) --------- */
   const dateInput = $("#bf-date");
@@ -217,15 +281,20 @@
 
   /* --------- Баштапкы жүктөө --------- */
   (async function init() {
-    const fb = window.DATKA_FALLBACK || { services: [], masters: [], reviews: [] };
-    const [services, masters, reviews] = await Promise.all([
+    const fb = window.DATKA_FALLBACK || { services: [], masters: [], reviews: [], gallery: [], settings: null };
+    const [services, masters, reviews, gallery, settings] = await Promise.all([
       apiGet("/services", fb.services),
       apiGet("/masters", fb.masters),
       apiGet("/reviews", fb.reviews),
+      apiGet("/gallery", fb.gallery || []),
+      apiGet("/settings", fb.settings || null),
     ]);
+    applySettings(settings);
     renderServices(services);
     renderMasters(masters);
     renderReviews(reviews);
+    renderGallery(gallery);
     observeReveal();
+    animateStats(); // настройкалар коюлгандан кийин сандарды анимациялайбыз
   })();
 })();

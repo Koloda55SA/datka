@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Датка — Башкаруу панели</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --plum:#2a1726; --plum-2:#3d2238; --wine:#6d2a4d;
+      --gold:#c9a35b; --gold-soft:#e3c98e; --cream:#f7f1e8; --cream-2:#efe6d6;
+      --ink:#2b2430; --muted:#8a7f88; --white:#fff;
+      --radius:14px; --shadow:0 18px 50px rgba(42,23,38,.14); --shadow-sm:0 8px 24px rgba(42,23,38,.10);
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --ok:#2e7d52; --err:#c0392b;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.15}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    input,select,textarea,button{font-family:inherit;font-size:.92rem}
+
+    /* ---------- Buttons ---------- */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+      padding:.7rem 1.4rem;border-radius:40px;font-weight:600;cursor:pointer;border:none;
+      transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s,opacity .2s}
+    .btn--gold{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:var(--plum);box-shadow:0 8px 22px rgba(201,163,91,.4)}
+    .btn--gold:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(201,163,91,.55)}
+    .btn--ghost{background:transparent;color:var(--wine);border:1.5px solid var(--wine)}
+    .btn--ghost:hover{background:rgba(109,42,77,.08)}
+    .btn--sm{padding:.45rem .9rem;font-size:.82rem}
+    .btn--danger{background:#fbeaea;color:var(--err);border:1px solid #eccccc}
+    .btn--danger:hover{background:#f6dcdc}
+    .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+    /* ---------- Login ---------- */
+    .login{min-height:100vh;display:grid;place-items:center;padding:1.5rem;
+      background:radial-gradient(circle at 70% 20%,var(--wine),var(--plum) 60%)}
+    .login__card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:2.6rem 2.2rem;width:min(400px,100%);text-align:center}
+    .login__card h1{font-size:1.7rem;color:var(--plum)}
+    .login__card p{color:var(--muted);font-size:.9rem;margin:.4rem 0 1.6rem}
+    .login__card .brand{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+
+    .field{text-align:left;margin-bottom:1rem}
+    .field label{display:block;font-weight:600;font-size:.82rem;margin-bottom:.35rem;color:var(--plum-2)}
+    .field input,.field select,.field textarea{width:100%;padding:.7rem .85rem;border:1.5px solid var(--cream-2);
+      border-radius:10px;background:#fff;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,163,91,.18)}
+    .field textarea{resize:vertical;min-height:60px}
+
+    .status{font-size:.85rem;margin-top:.8rem;min-height:1.2em}
+    .status.ok{color:var(--ok)} .status.err{color:var(--err)}
+
+    .hidden{display:none!important}
+
+    /* ---------- Shell ---------- */
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(42,23,38,.97);backdrop-filter:blur(10px);
+      color:var(--white);padding:.8rem 0;box-shadow:0 6px 24px rgba(0,0,0,.2)}
+    .topbar__in{width:min(1180px,94%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .topbar__brand{display:flex;align-items:center;gap:.6rem;font-family:'Playfair Display',serif;font-size:1.25rem}
+    .topbar__brand small{display:block;font-family:'Montserrat';font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
+    .topbar__brand img{width:38px;height:38px}
+    .topbar__actions{display:flex;gap:.6rem;align-items:center}
+    .topbar a.view{color:var(--gold-soft);font-size:.85rem;font-weight:600}
+
+    .wrap{width:min(1180px,94%);margin:1.6rem auto 4rem}
+
+    .tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem}
+    .tab{padding:.55rem 1.1rem;border-radius:40px;background:#fff;border:1.5px solid var(--cream-2);
+      cursor:pointer;font-weight:600;font-size:.86rem;color:var(--wine);transition:all .2s}
+    .tab:hover{border-color:var(--gold)}
+    .tab.active{background:linear-gradient(135deg,var(--wine),var(--plum));color:#fff;border-color:transparent}
+    .tab .badge{display:inline-block;margin-left:.4rem;background:var(--gold);color:var(--plum);
+      font-size:.7rem;font-weight:700;border-radius:20px;padding:0 .45rem;min-width:1.2em}
+
+    .panel{display:none}
+    .panel.active{display:block;animation:fade .3s var(--ease)}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    .panel__head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+    .panel__head h2{font-size:1.5rem;color:var(--plum)}
+    .panel__head .sub{color:var(--muted);font-size:.85rem}
+
+    /* ---------- Cards / editor ---------- */
+    .cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.1rem;position:relative;
+      border:1px solid var(--cream-2)}
+    .card__row{display:flex;gap:.7rem;margin-bottom:.7rem}
+    .card__row .field{flex:1;margin-bottom:0}
+    .card .field{margin-bottom:.7rem}
+    .card__del{position:absolute;top:.7rem;right:.7rem}
+
+    .thumb{width:100%;height:150px;border-radius:10px;background-size:cover;background-position:center;
+      background-color:var(--cream-2);margin-bottom:.6rem;display:grid;place-items:center;color:var(--muted);font-size:.8rem}
+    .thumb--round{width:90px;height:90px;border-radius:50%;margin:0 auto .6rem}
+    .upload{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.7rem}
+    .upload input[type=file]{display:none}
+    .upload__label{font-size:.78rem;color:var(--muted)}
+
+    .savebar{position:sticky;bottom:0;margin-top:1.4rem;background:rgba(247,241,232,.95);backdrop-filter:blur(6px);
+      padding:.9rem 0;display:flex;gap:.8rem;align-items:center;border-top:1px solid var(--cream-2)}
+
+    /* ---------- Bookings ---------- */
+    .bk{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--cream-2);
+      padding:1rem 1.1rem;margin-bottom:.8rem;display:grid;grid-template-columns:1fr auto;gap:.6rem 1rem;align-items:start}
+    .bk__main h3{font-size:1.05rem;color:var(--plum);font-family:'Montserrat';font-weight:700}
+    .bk__meta{font-size:.85rem;color:var(--muted);margin-top:.2rem}
+    .bk__meta b{color:var(--ink);font-weight:600}
+    .bk__note{font-size:.85rem;margin-top:.4rem;color:var(--wine);font-style:italic}
+    .bk__side{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end}
+    .bk__side select{padding:.4rem .6rem;border-radius:8px;border:1.5px solid var(--cream-2)}
+    .chip{font-size:.72rem;font-weight:700;padding:.18rem .6rem;border-radius:20px;text-transform:uppercase;letter-spacing:.03em}
+    .chip.new{background:#fff4e0;color:#b9821b}
+    .chip.confirmed{background:#e3f1ff;color:#1f6fb2}
+    .chip.done{background:#e6f6ec;color:var(--ok)}
+    .chip.cancelled{background:#fbeaea;color:var(--err)}
+
+    .empty{text-align:center;color:var(--muted);padding:3rem 1rem;font-size:.95rem}
+    .loader{text-align:center;color:var(--muted);padding:2rem}
+
+    .toast{position:fixed;left:50%;bottom:1.6rem;transform:translateX(-50%) translateY(120%);
+      background:var(--plum);color:#fff;padding:.8rem 1.4rem;border-radius:40px;box-shadow:var(--shadow);
+      font-size:.88rem;z-index:80;transition:transform .35s var(--ease);max-width:90%}
+    .toast.show{transform:translateX(-50%) translateY(0)}
+    .toast.err{background:var(--err)}
+
+    @media(max-width:560px){
+      .bk{grid-template-columns:1fr}.bk__side{align-items:flex-start}
+      .card__row{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <!-- ░░░ LOGIN ░░░ -->
+  <section class="login" id="loginView">
+    <form class="login__card" id="loginForm">
+      <p class="brand">Датка · Admin</p>
+      <h1>Башкаруу панели</h1>
+      <p>Сайтты башкаруу үчүн сырсөздү киргизиңиз</p>
+      <div class="field">
+        <label for="pwd">Сырсөз</label>
+        <input id="pwd" type="password" autocomplete="current-password" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn--gold" style="width:100%" id="loginBtn">Кирүү</button>
+      <p class="status" id="loginStatus" role="status"></p>
+    </form>
+  </section>
+
+  <!-- ░░░ APP ░░░ -->
+  <div id="appView" class="hidden">
+    <header class="topbar">
+      <div class="topbar__in">
+        <div class="topbar__brand">
+          <img src="assets/logo-mark.svg" alt="" />
+          <span>Датка<small>башкаруу панели</small></span>
+        </div>
+        <div class="topbar__actions">
+          <a class="view" href="index.html" target="_blank">↗ Сайтты көрүү</a>
+          <button class="btn btn--ghost btn--sm" id="logoutBtn" style="color:#e3c98e;border-color:rgba(227,201,142,.5)">Чыгуу</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="bookings">Жазылуулар <span class="badge" id="bkBadge">0</span></button>
+        <button class="tab" data-tab="services">Кызматтар</button>
+        <button class="tab" data-tab="masters">Шеберлер</button>
+        <button class="tab" data-tab="gallery">Галерея</button>
+        <button class="tab" data-tab="reviews">Пикирлер</button>
+        <button class="tab" data-tab="settings">Жөндөөлөр</button>
+      </div>
+
+      <!-- BOOKINGS -->
+      <section class="panel active" id="panel-bookings">
+        <div class="panel__head">
+          <div>
+            <h2>Онлайн жазылуулар</h2>
+            <p class="sub">Кардарлардын суроо-талаптары. Статусту өзгөртүп, башкарыңыз.</p>
+          </div>
+          <button class="btn btn--ghost btn--sm" id="refreshBookings">↻ Жаңылоо</button>
+        </div>
+        <div id="bookingsList"><div class="loader">Жүктөлүүдө…</div></div>
+      </section>
+
+      <!-- COLLECTION PANELS (rendered by JS) -->
+      <section class="panel" id="panel-services"></section>
+      <section class="panel" id="panel-masters"></section>
+      <section class="panel" id="panel-gallery"></section>
+      <section class="panel" id="panel-reviews"></section>
+      <section class="panel" id="panel-settings"></section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

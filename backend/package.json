@@ -1,14 +1,14 @@
 {
   "name": "datka-backend",
   "version": "1.0.0",
-  "description": "«Датка» сулуулук салонунун placeholder (демо) бэкенди",
+  "description": "«Датка» сулуулук салонунун локалдык иштеп чыгуу сервери (Express)",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
-  "keywords": ["datka", "salon", "diploma", "express", "placeholder"],
+  "keywords": ["datka", "salon", "express", "rest-api"],
   "author": "Koloda55SA",
   "license": "MIT",
   "dependencies": {

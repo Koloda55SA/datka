@@ -1,16 +1,14 @@
 /* ===========================================================
-   «Датка» сулуулук салону — PLACEHOLDER (демо) бэкенд
+   «Датка» сулуулук салону — ЛОКАЛДЫК ИШТЕП ЧЫГУУ СЕРВЕРИ
    -----------------------------------------------------------
-   Бул сервер дипломдук иштин демонстрациясы үчүн жазылган.
-   Учурда маалыматтар:
-     - кызматтар / шеберлер / пикирлер  -> JSON файлдардан окулат
-     - жазылуулар (bookings)            -> сервердин эс тутумунда (in-memory)
+   Бул сервер тиркемени локалда (Интернетсиз) иштеп чыгуу жана
+   сыноо үчүн арналган. Ал өндүрүштөгү (production) Cloudflare
+   Pages Functions бэкенди менен ТАК ушундай REST API'ди берет.
 
-   ӨНДҮРҮШКӨ (production) чыгаруу үчүн:
-     1) Бул жерге чыныгы маалымат базасын туташтыруу керек
-        (мисалы: PostgreSQL / MongoDB / MySQL).
-     2) "TODO(DB)" деп белгиленген жерлерди алмаштыруу.
-     3) Аутентификация жана валидацияны кеңейтүү.
+   Маалыматтар:
+     - кызматтар / шеберлер / пикирлер  -> JSON файлдардан окулат
+     - жазылуулар (bookings)            -> локалдык эс тутумда
+       (өндүрүштө жазылуулар Cloudflare KV базасында сакталат)
 
    Ишке киргизүү:
        npm install
@@ -40,8 +38,8 @@ function readJson(file) {
   }
 }
 
-// ---- Жазылуулар: убактылуу эс тутумда (placeholder) ----
-// TODO(DB): бул массивдин ордуна чыныгы маалымат базасынын таблицасы болот.
+// ---- Жазылуулар: локалдык эс тутумда ----
+// (Өндүрүштө Cloudflare KV базасы колдонулат — functions/api/bookings.js)
 const bookings = [];
 let bookingSeq = 1000;
 
@@ -49,7 +47,7 @@ let bookingSeq = 1000;
 
 // Ден соолук текшерүү
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", service: "datka-backend", mode: "placeholder", time: new Date().toISOString() });
+  res.json({ status: "ok", service: "datka-backend", mode: "local-dev", time: new Date().toISOString() });
 });
 
 // Кызматтар тизмеси
@@ -91,7 +89,6 @@ app.post("/api/bookings", (req, res) => {
     createdAt: new Date().toISOString(),
   };
 
-  // TODO(DB): бул жерде маалымат базасына INSERT жасалат.
   bookings.push(booking);
   console.log(`[Датка] Жаңы жазылуу №${booking.id}: ${name}, ${service}, ${date} ${time}`);
 
@@ -109,6 +106,6 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n  ✦ «Датка» placeholder бэкенди иштеп жатат`);
+  console.log(`\n  ✦ «Датка» локалдык иштеп чыгуу сервери иштеп жатат`);
   console.log(`  ✦ http://localhost:${PORT}/api/health\n`);
 });
